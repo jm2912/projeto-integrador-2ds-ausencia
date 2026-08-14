@@ -1,30 +1,86 @@
 body{
-    margin: 0px auto;
-    background-color: #050a30;
+    margin: 0px;
     height: 100vh;
     width: 100%;
     display: flex ;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
+    background-image: url("background.png");
+    background-size: cover;
+    margin-left: 0px;
  }
  #main {
-    margin:300px;
-    height:500px;
+    margin:0px;
+    height:400px;
     background-color: #004C80;
     position: relative;
     overflow: hidden;
-    width: 500px;
+    width: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
 #main div {
     position: absolute;
-    width: 20px;
-    height: 20px;
+    width: 40px;
+    height: 40px;
     border-radius: 100%;
-    background-color:#050a30    ;
+    background-color:#020D2A    ;
 }
 
 .top { top: -10px; }
 .bottom { bottom: -10px; }
 .left { left: -10px; }
 .right { right: -10px; }
+
+.abscene {
+    display: flex;
+    flex-direction: column;
+    font-size: xx-large;
+    font-family: "Poppins", sans-serif;
+  color: #21537a;
+  align-items: center;
+  justify-content: top;
+  text-align: center;
+  padding-top: 20px;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.botao {
+    background-color: #4a53fa;
+    linear-gradient (to down, #4a53fa, #1e3c72);
+    background-image: linear-gradient(to bottom, #363ef1, #feffff);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    font-size: 16px;
+    background-color: #5170ff;
+    color: white;
+    height: 70px;
+
+}
+
+input::placeholder {
+    color: white;
+    opacity: 0.7;
+}
