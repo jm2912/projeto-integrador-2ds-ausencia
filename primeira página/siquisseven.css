@@ -1,0 +1,28 @@
+body{
+  background: #0b1130;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  padding-top: 80px;
+}
+
+.options{
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+button{
+  width: 260px;
+  height: 260px;
+  font-size: 28px;
+  border: none;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #38c6d9, #1657c9);
+  color: #fff;
+  cursor: pointer;
+}
+
+button:hover{
+  opacity: 0.8;
+}
