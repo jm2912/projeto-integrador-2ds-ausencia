@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Professores</title>
+    <style>
+        :root {
+            --primary-color: #4a90e2;
+            --bg-color: #f5f7fa;
+            --text-color: #333;
+            --row-hover: #f1f5f9;
+            --present-bg: #e6f4ea;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .table-container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: 90%;
+            max-width: 800px;
+        }
+
+        .table-title {
+            background-color: var(--primary-color);
+            color: white;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+            font-size: 1.5rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        th, td {
+            padding: 15px 20px;
+            border-bottom: 1px solid #e1e8ed;
+        }
+
+        th {
+            background-color: #f8fafc;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover {
+            background-color: var(--row-hover);
+        }
+
+        /* Estilo quando a linha estiver marcada como presente */
+        tr.is-present {
+            background-color: var(--present-bg);
+        }
+
+        /* Customizando o Switch de Presença */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 46px;
+            height: 22px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .3s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 14px;
+            width: 14px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .3s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: #34a853;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(24px);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="table-container">
+        <h2 class="table-title">Controle de Presença - Professores</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Turma</th>
+                    <th>Presente</th>
+                </tr>
+            </thead>
+            <tbody id="teacher-table-body">
+                <!-- As linhas serão inseridas pelo JavaScript -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Dados dos professores
+        const professores = [
+            { id: 1, nome: "Ana Silva", turma: "9º Ano A", presente: false },
+            { id: 2, nome: "Carlos Santos", turma: "1º Ano EM", presente: true },
+            { id: 3, nome: "Mariana Costa", turma: "3º Ano EM", presente: false },
+            { id: 4, nome: "Ricardo Oliveira", turma: "8º Ano B", presente: true }
+        ];
+
+        const tableBody = document.getElementById('teacher-table-body');
+
+        // Função para renderizar a tabela
+        function renderTable() {
+            tableBody.innerHTML = '';
+
+            professores.forEach(prof => {
+                const tr = document.createElement('tr');
+                if (prof.presente) {
+                    tr.classList.add('is-present');
+                }
+
+                tr.innerHTML = `
+                    <td><strong>${prof.nome}</strong></td>
+                    <td>${prof.turma}</td>
+                    <td>
+                        <label class="switch">
+                            <input type="checkbox" ${prof.presente ? 'checked' : ''} onchange="togglePresenca(${prof.id}, this)">
+                            <span class="slider"></span>
+                        </label>
+                    </td>
+                `;
+                tableBody.appendChild(tr);
+            });
+        }
+
+        // Função para alternar o estado de presença e atualizar a classe da linha
+        function togglePresenca(id, checkbox) {
+            const professor = professores.find(p => p.id === id);
+            if (professor) {
+                professor.presente = checkbox.checked;
+                
+                // Atualiza o fundo da linha visualmente sem precisar dar um refresh na tabela inteira
+                const row = checkbox.closest('tr');
+                if (checkbox.checked) {
+                    row.classList.add('is-present');
+                } else {
+                    row.classList.remove('is-present');
+                }
+            }
+        }
+
+        // Inicializa a tabela ao carregar a página
+        renderTable();
+    </script>
+
+</body>
+</html>
