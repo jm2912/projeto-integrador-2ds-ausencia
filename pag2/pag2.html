@@ -1,17 +1,30 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>professores</title>
+    <title>Lista de Professores</title>
     <link rel="stylesheet" href="pag2.css">
+    
 </head>
-
 <body>
-    <div class="direcao">
-        <button class="professores">Presença</button>
-    </div>
-</body>
 
+    <div class="table-container">
+        <h2 class="table-title">Controle de Presença - Professores</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Professores</th>
+                    <th>Turma</th>
+                    <th>Presente</th>
+                </tr>
+            </thead>
+            <tbody id="teacher-table-body">
+            </tbody>
+        </table>
+    </div>
+
+    <script src="pag2.js"></script>
+
+</body>
 </html>
